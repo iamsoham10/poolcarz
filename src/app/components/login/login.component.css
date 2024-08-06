@@ -1,0 +1,46 @@
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-container {
+    width: 400px;
+    border: 2px solid #277eb8;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.top-color {
+    width: auto;
+    z-index: 1;
+    height: 50px;
+    background-color: #277eb8;
+    padding: 12px;
+    color: white;
+    font-size: 18px;
+}
+
+.content {
+    padding: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
+    gap: 30px;
+}
+
+button {
+    margin-top: 5px;
+    background-color: #277eb8;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+}

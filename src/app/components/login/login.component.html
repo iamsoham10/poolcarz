@@ -7,9 +7,11 @@
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar" style="background-color: #e2e2e2;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand custom-text-color" href="#">PoolCarz</a>
+            <a class="navbar-brand custom-text-color" href="#">Logout</a>
         </div>
     </nav>
 
@@ -19,14 +21,14 @@
             <div class="content">
                 <div class="form">
                     <label for="username">Username</label>
-                    <input type="text" id="username">
+                    <input [(ngModel)]="username" type="text" id="username">
                 </div>
                 <div class="form">
                     <label for="password">Password</label>
-                    <input type="password" id="password">
+                    <input [(ngModel)]="password" type="password" id="password">
                 </div>
                 <div class="form">
-                    <button class="login">Login</button>
+                    <button (click)="onLogin()" class="login">Login</button>
                 </div>
             </div>
         </div>

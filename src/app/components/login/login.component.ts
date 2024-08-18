@@ -14,12 +14,30 @@ export class LoginComponent {
   password: string = '';
 
   constructor(private router: Router) { }
+  // onLogin() {
+  //   if (this.username === 'admin' && this.password === 'admin') {
+  //     this.router.navigate(['/book-ride']);
+  //   }
+  //   else {
+  //     alert('Invalid Username or Password');
+  //   }
+  // }
+
+  users: any[] = [
+    { username: 'admin', password: 'admin' },
+    { username: 'soham', password: 'soham' },
+    { username: 'sam', password: 'sam' },
+    { username: 'root', password: 'root' },
+    { username: 'user', password: 'user' },
+  ]
+
   onLogin() {
-    if (this.username === 'admin' && this.password === 'admin') {
+    if (this.users.find(u => u.username === this.username && u.password === this.password)) {
+      alert(`Welcome ${this.username}`);
       this.router.navigate(['/book-ride']);
     }
     else {
-      alert('Invalid Username or Password');
+      alert('Invalid username or password');
     }
   }
 }

@@ -1,23 +1,25 @@
+p {
+  text-align: center;
+  color: red;
+}
+
 .card {
-  margin: 100px;
+  margin: 20px;
 }
 
 .card-border {
   border: 2px solid rgb(67, 67, 201);
 }
 
+.card-body {
+  text-align: center;
+}
+
 .ride-table {
-  margin: 20px;
+  margin: 10px;
   display: flex;
   justify-content: center;
-}
-
-.ride-buttons {
-  margin: 5px;
-}
-
-.ride-offer-btn {
-  margin-bottom: 10px;
+  align-items: center;
 }
 
 .ride-info-table {
@@ -31,8 +33,4 @@
 th,
 td {
   padding: 10px;
-}
-
-.selected {
-  background-color: #0fbbff;
 }

@@ -2,11 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MouseHoverDirective } from './mouse-hover.directive';
 import { RideFilterPipe } from './ride-filter.pipe';
+import { RideDetailsComponent } from '../ride-details/ride-details.component';
 
 @Component({
   selector: 'app-book-ride',
   standalone: true,
-  imports: [CommonModule, MouseHoverDirective, RideFilterPipe],
+  imports: [
+    CommonModule,
+    MouseHoverDirective,
+    RideFilterPipe,
+    RideDetailsComponent,
+  ],
   templateUrl: './book-ride.component.html',
   styleUrl: './book-ride.component.css',
 })
@@ -18,6 +24,8 @@ export class BookRideComponent {
   isToOfficeTableVisible: boolean = false;
   isFromOfficeTableVisible: boolean = false;
   isOtherTableVisible: boolean = false;
+  rideSelected: any = null;
+  showRideDetails: boolean = false;
 
   rideInfo: any[] = [
     {
@@ -123,6 +131,17 @@ export class BookRideComponent {
       this.isOtherTableVisible = true;
       this.isRideInfoTableVisible = true;
       this.rideFilter = 'Other';
+    }
+  }
+
+  selectRide(ride: any) {
+    this.showRideDetails = !this.showRideDetails;
+    this.rideSelected = ride;
+  }
+
+  hideRideInfoTable(isHidden: boolean) {
+    if (isHidden) {
+      this.isRideInfoTableVisible = !this.isRideInfoTableVisible;
     }
   }
 }

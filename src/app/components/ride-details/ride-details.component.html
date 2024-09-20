@@ -1,0 +1,38 @@
+<div *ngIf="isVisible" class="card card-border">
+  <h5 class="card-header bg-primary text-white">Ride Details</h5>
+  <div class="card-body">
+    <!-- Ride Table -->
+    <div class="ride-table text-center">
+      <table class="ride-info-table table-bordered text-center">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Car</th>
+            <th>Seats Left</th>
+            <th>Pick-up Point</th>
+            <th>Destination</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="rideSelected">
+            <td>{{ rideSelected.id }}</td>
+            <td>{{ rideSelected.name }}</td>
+            <td>{{ rideSelected.car }}</td>
+            <td>{{ rideSelected.seatsLeft }}</td>
+            <td>{{ rideSelected.pickUp }}</td>
+            <td>{{ rideSelected.destination }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p *ngIf="showBookingMsg">{{ confirmBooking }}</p>
+    <button
+      class="btn btn-primary book-btn text-center"
+      [ngStyle]="bookButtonStyle"
+      (click)="bookRideButton()"
+    >
+      {{ bookRide ? "Book!" : "Cancel Booked Ride" }}
+    </button>
+  </div>
+</div>

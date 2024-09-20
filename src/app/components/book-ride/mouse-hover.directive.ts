@@ -2,16 +2,45 @@ import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appMouseHover]',
-  standalone: true
+  standalone: true,
 })
 export class MouseHoverDirective {
-  constructor(private element: ElementRef, private renderer: Renderer2) { }
+  private isClicked = false;
+
+  constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('mouseenter') onHoverEnter() {
-    this.renderer.setStyle(this.element.nativeElement, 'background-color', '#0fbbff');
+    if (!this.isClicked) {
+      this.renderer.setStyle(
+        this.element.nativeElement,
+        'background-color',
+        '#0fbbff'
+      );
+    }
   }
   @HostListener('mouseleave') onHoverLeaver() {
-    this.renderer.setStyle(this.element.nativeElement, 'background-color', 'white');
+    if (!this.isClicked) {
+      this.renderer.setStyle(
+        this.element.nativeElement,
+        'background-color',
+        'white'
+      );
+    }
   }
-
+  @HostListener('click') onClick() {
+    this.isClicked = !this.isClicked;
+    if (this.isClicked) {
+      this.renderer.setStyle(
+        this.element.nativeElement,
+        'background-color',
+        '#0fbbff'
+      );
+    } else {
+      this.renderer.setStyle(
+        this.element.nativeElement,
+        'background-color',
+        'white'
+      );
+    }
+  }
 }

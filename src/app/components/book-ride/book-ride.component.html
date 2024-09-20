@@ -18,7 +18,7 @@
           with others. You can either book a ride or offer a ride. Did we
           mention that this app is advertisement free? To add on top of that its
           free of cost! So what are you waiting for? Check out the rides
-          available and start PCing!!
+          available and start riding!!
         </p>
         <div class="text-center">
           <button
@@ -59,7 +59,9 @@
         </div>
       </div>
 
-      <p class="text-center text-primary">Please select a ride!</p>
+      <p *ngIf="!showRideDetails" class="text-center text-primary">
+        Please select a ride!
+      </p>
 
       <div *ngIf="isRideInfoTableVisible" class="ride-table text-center">
         <table class="ride-info-table table-bordered text-center">
@@ -73,6 +75,8 @@
           <tbody>
             <tr
               *ngFor="let ride of rideInfo | rideFilter : rideFilter"
+              [ngClass]="{ selectRide: rideSelected === ride }"
+              (click)="selectRide(ride)"
               appMouseHover
             >
               <td>{{ ride.pickUp }}</td>
@@ -83,6 +87,12 @@
         </table>
       </div>
 
+      <app-ride-details
+        [isVisible]="showRideDetails"
+        [rideSelected]="rideSelected"
+        [bookRide]="isRideInfoTableVisible"
+        (hideTable)="hideRideInfoTable($event)"
+      ></app-ride-details>
       <div class="ride-offer-btn text-center">
         <button class="btn btn-primary">Offer a Ride!</button>
       </div>

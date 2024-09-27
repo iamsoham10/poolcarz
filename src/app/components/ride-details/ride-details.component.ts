@@ -19,8 +19,13 @@ export class RideDetailsComponent {
   bookButtonStyle = {};
 
   bookRideButton() {
+    if (this.showBookingMsg) {
+      this.isVisible = false;
+      this.rideSelected = null;
+      console.log(this.rideSelected);
+    }
     this.bookRide = !this.bookRide;
-    this.showBookingMsg = true;
+    this.showBookingMsg = !this.showBookingMsg;
     this.changeBookButtonStyle();
     this.hideTable.emit(true);
   }

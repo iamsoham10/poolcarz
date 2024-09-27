@@ -1,34 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="login.component.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+  </head>
 
-<head>
-    <link rel="stylesheet" href="login.component.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-</head>
+  <body>
+    <div class="centered-container">
+      <div class="card w-25 mx-auto">
+        <div class="card-header bg-primary text-white">Login</div>
+        <div class="card-body">
+          <!-- Form -->
+          <form>
+            <div class="form-group row mb-3">
+              <label for="username" class="col-sm-3 col-form-label text-nowrap fw-bold">User Name</label>
+              <div class="col-sm-9">
 
-<body>
-
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="login-container">
-            <div class="top-color">Login</div>
-            <div class="content">
-                <div class="form">
-                    <label for="username">Username</label>
-                    <input [(ngModel)]="username" type="text" id="username">
-                </div>
-                <div class="form">
-                    <label for="password">Password</label>
-                    <input [(ngModel)]="password" type="password" id="password">
-                </div>
-                <div class="form">
-                    <button (click)="onLogin()" class="login">Login</button>
-                </div>
+                <input type="text" name="username" id="username" class="form-control" #uName="ngModel" [(ngModel)]="username" required minlength="3" />
+                @if(uName.touched && uName.errors?.['required']){
+                  <span class="text-danger">{{nameResponse}}</span>
+                } @else if((uName.touched || uName.dirty) &&uName.errors?.['minlength']){
+                  <span class="text-danger">Mininum 3 characters required</span>
+                }
+              </div>
             </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
+            <div class="form-group row">
+              <label for="password" class="col-sm-3 col-form-label text-nowrap fw-bold">Password</label>
+              <div class="col-sm-9">
 
+                <input type="password" name="password" id="password" class="form-control" #uPass="ngModel" [(ngModel)]="password" required/>
+                @if((uPass.touched || uPass.dirty) && uPass.errors?.['required']){
+                  <span class="text-danger">{{passResponse}}</span>
+                }
+              </div>
+            </div>
+            <div>
+              <p *ngIf="finalResponse" class="text-danger">Invalid Credentials</p>
+            </div>
+            <div class="text-center">
+              <button (click)="onLogin()" class="btn btn-primary">Login</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

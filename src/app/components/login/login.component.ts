@@ -1,28 +1,23 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  nameResponse: string = '';
+  passResponse: string = '';
+  finalResponse: boolean = false;
 
   constructor(private router: Router) { }
-  // onLogin() {
-  //   if (this.username === 'admin' && this.password === 'admin') {
-  //     this.router.navigate(['/book-ride']);
-  //   }
-  //   else {
-  //     alert('Invalid Username or Password');
-  //   }
-  // }
-
   users: any[] = [
     { username: 'admin', password: 'admin' },
     { username: 'soham', password: 'soham' },
@@ -32,12 +27,25 @@ export class LoginComponent {
   ]
 
   onLogin() {
-    if (this.users.find(u => u.username === this.username && u.password === this.password)) {
+    if (this.username === '' && this.password === '') {
+      this.nameResponse = 'Username is required';
+      this.passResponse = 'Password is required';
+      return;
+    } else if (this.username === '') {
+      this.nameResponse = 'Username is required';
+      return;
+    } else if (this.password === '') {
+      this.passResponse = 'Password is required';
+      return;
+    }
+    const user = this.users.find(u => u.username === this.username && u.password === this.password);
+  
+    if (user) {
+      this.finalResponse = false;
       alert(`Welcome ${this.username}`);
       this.router.navigate(['/book-ride']);
-    }
-    else {
-      alert('Invalid username or password');
+    } else {
+      this.finalResponse = true;
     }
   }
 }

@@ -135,6 +135,9 @@ export class BookRideComponent {
   }
 
   selectRide(ride: any) {
+    if (this.rideSelected === ride) {
+      this.rideSelected = null;
+    }
     this.showRideDetails = !this.showRideDetails;
     this.rideSelected = ride;
   }

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MouseHoverDirective } from './mouse-hover.directive';
 import { RideFilterPipe } from './ride-filter.pipe';
 import { RideDetailsComponent } from '../ride-details/ride-details.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-ride',
@@ -17,6 +18,8 @@ import { RideDetailsComponent } from '../ride-details/ride-details.component';
   styleUrl: './book-ride.component.css',
 })
 export class BookRideComponent {
+  constructor(private router: Router) { }
+
   rideFilter: string = '';
   isButtonVisible: boolean = false;
   isOfficeButtonOn: boolean = false;
@@ -146,5 +149,9 @@ export class BookRideComponent {
     if (isHidden) {
       this.isRideInfoTableVisible = !this.isRideInfoTableVisible;
     }
+  }
+
+  offerRide(){
+    this.router.navigate(['/offer-ride']);
   }
 }

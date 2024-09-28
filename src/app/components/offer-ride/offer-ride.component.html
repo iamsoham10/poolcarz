@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header bg-primary text-white">
+      Car Ride Registration Form
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+              <label for="email" class="form-label fw-bold">Name</label>
+              <input type="text" class="form-control" id="email">
+            </div>
+            <div class="mb-3">
+              <label for="startLocation" class="form-label fw-bold">Start Location</label>
+              <input type="text" class="form-control" id="startLocation">
+            </div>
+            <div class="mb-3">
+              <label for="destination" class="form-label fw-bold">Destination</label>
+              <input type="text" class="form-control" id="destination">
+            </div>
+            <div class="mb-3">
+              <label for="car" class="form-label fw-bold">Car</label>
+              <input type="text" class="form-control" id="car">
+            </div>
+            <div class="mb-3">
+              <label for="seats" class="form-label fw-bold">Seats Available</label>
+              <input type="number" class="form-control" id="seats" name="seats" [(ngModel)]="seatsAvailable">
+              <span *ngIf="invalidSeatsNumber" class="text-danger">Seats should be greater than 0 and less than 8</span>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            <button type="Go Back" class="btn btn-primary ms-3" (click)="goBack()">Go Back</button>
+          </form>
+    </div>
+  </div>

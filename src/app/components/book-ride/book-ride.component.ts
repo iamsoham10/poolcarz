@@ -151,7 +151,7 @@ export class BookRideComponent {
     }
   }
 
-  offerRide(){
+  offerRide() {
     this.router.navigate(['/offer-ride']);
   }
 }

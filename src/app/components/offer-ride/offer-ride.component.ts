@@ -11,20 +11,21 @@ import { Router } from '@angular/router';
   styleUrl: './offer-ride.component.css'
 })
 export class OfferRideComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+
 
   seatsAvailable: number = 0;
   invalidSeatsNumber: boolean = false;
-  onSubmit(){
-    if(this.seatsAvailable <= 0 || this.seatsAvailable > 8){
+  onSubmit() {
+    if (this.seatsAvailable <= 0 || this.seatsAvailable > 8) {
       this.invalidSeatsNumber = true;
     }
-    else{
+    else {
       this.invalidSeatsNumber = false;
       console.log("Form Submitted");
     }
   }
-  goBack(){
+  goBack() {
     this.router.navigate(['/book-ride']);
     console.log("Went back");
   }

@@ -15,7 +15,7 @@
         <div class="card-header bg-primary text-white">Login</div>
         <div class="card-body">
           <!-- Form -->
-          <form>
+          <form (ngSubmit)="onSubmit()">
             <div class="form-group row mb-3">
               <label for="username" class="col-sm-3 col-form-label text-nowrap fw-bold">User Name</label>
               <div class="col-sm-9">
@@ -42,7 +42,7 @@
               <p *ngIf="finalResponse" class="text-danger">Invalid Credentials</p>
             </div>
             <div class="text-center">
-              <button (click)="onLogin()" class="btn btn-primary">Login</button>
+              <button class="btn btn-primary">Login</button>
           </div>
           </form>
         </div>

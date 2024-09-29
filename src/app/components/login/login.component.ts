@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RestService } from '../../services/rest.service';
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,42 +12,21 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
   nameResponse: string = '';
   passResponse: string = '';
   finalResponse: boolean = false;
+  rides!: any[];
 
-  constructor(private router: Router) { }
-  users: any[] = [
-    { username: 'admin', password: 'admin' },
-    { username: 'soham', password: 'soham' },
-    { username: 'sam', password: 'sam' },
-    { username: 'root', password: 'root' },
-    { username: 'user', password: 'user' },
-  ]
+  constructor(private router: Router, private restService: RestService) { }
 
-  onLogin() {
-    if (this.username === '' && this.password === '') {
-      this.nameResponse = 'Username is required';
-      this.passResponse = 'Password is required';
-      return;
-    } else if (this.username === '') {
-      this.nameResponse = 'Username is required';
-      return;
-    } else if (this.password === '') {
-      this.passResponse = 'Password is required';
-      return;
-    }
-    const user = this.users.find(u => u.username === this.username && u.password === this.password);
-  
-    if (user) {
-      this.finalResponse = false;
-      alert(`Welcome ${this.username}`);
-      this.router.navigate(['/book-ride']);
-    } else {
-      this.finalResponse = true;
-    }
+  ngOnInit(): void { }
+
+  onSubmit(): void {
+    this.restService.getUsers().subscribe(users => {
+      const user = users.find(u => u.username === this.username && u.password === this.password);
+    });
   }
 }

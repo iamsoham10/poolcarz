@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'book-ride', component: BookRideComponent },
-    {path: 'offer-ride', component: OfferRideComponent},
+    { path: 'offer-ride', component: OfferRideComponent },
 ];
 
 @NgModule({

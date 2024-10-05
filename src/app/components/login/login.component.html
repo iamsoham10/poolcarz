@@ -15,14 +15,14 @@
         <div class="card-header bg-primary text-white">Login</div>
         <div class="card-body">
           <!-- Form -->
-          <form (ngSubmit)="onSubmit()">
+          <form (ngSubmit)="login()">
             <div class="form-group row mb-3">
               <label for="username" class="col-sm-3 col-form-label text-nowrap fw-bold">User Name</label>
               <div class="col-sm-9">
 
                 <input type="text" name="username" id="username" class="form-control" #uName="ngModel" [(ngModel)]="username" required minlength="3" />
                 @if(uName.touched && uName.errors?.['required']){
-                  <span class="text-danger">{{nameResponse}}</span>
+                  <span class="text-danger">{{touchResponse}}</span>
                 } @else if((uName.touched || uName.dirty) &&uName.errors?.['minlength']){
                   <span class="text-danger">Mininum 3 characters required</span>
                 }
@@ -34,16 +34,14 @@
 
                 <input type="password" name="password" id="password" class="form-control" #uPass="ngModel" [(ngModel)]="password" required/>
                 @if((uPass.touched || uPass.dirty) && uPass.errors?.['required']){
-                  <span class="text-danger">{{passResponse}}</span>
+                  <span class="text-danger">{{touchResponse}}</span>
                 }
               </div>
-            </div>
-            <div>
-              <p *ngIf="finalResponse" class="text-danger">Invalid Credentials</p>
             </div>
             <div class="text-center">
               <button class="btn btn-primary">Login</button>
           </div>
+          <p class="text-danger">{{errorMessage}}</p>
           </form>
         </div>
       </div>

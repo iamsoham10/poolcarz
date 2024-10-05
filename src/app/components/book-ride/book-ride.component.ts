@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MouseHoverDirective } from './mouse-hover.directive';
 import { RideFilterPipe } from './ride-filter.pipe';
 import { RideDetailsComponent } from '../ride-details/ride-details.component';
 import { Router } from '@angular/router';
+import { RestService } from '../../services/rest.service';
 
 @Component({
   selector: 'app-book-ride',
@@ -17,8 +18,8 @@ import { Router } from '@angular/router';
   templateUrl: './book-ride.component.html',
   styleUrl: './book-ride.component.css',
 })
-export class BookRideComponent {
-  constructor(private router: Router) { }
+export class BookRideComponent implements OnInit {
+  constructor(private router: Router, private restService: RestService) { }
 
   rideFilter: string = '';
   isButtonVisible: boolean = false;
@@ -30,62 +31,18 @@ export class BookRideComponent {
   rideSelected: any = null;
   showRideDetails: boolean = false;
 
-  rideInfo: any[] = [
-    {
-      id: 1,
-      offerId: 'abc',
-      name: 'Yash',
-      car: 'Swift',
-      seatsLeft: 2,
-      pickUp: 'Station',
-      destination: 'Office',
-    },
-    {
-      id: 2,
-      offerId: 'xyz',
-      name: 'Aditya',
-      car: 'Santro',
-      seatsLeft: 1,
-      pickUp: 'Office',
-      destination: 'M. G. Chouk',
-    },
-    {
-      id: 3,
-      offerId: 'mno',
-      name: 'Bhavesh',
-      car: 'Waganor',
-      seatsLeft: 1,
-      pickUp: 'Aarey Road',
-      destination: 'Shivaji Nagar',
-    },
-    {
-      id: 4,
-      offerId: 'pqr',
-      name: 'Sumit',
-      car: 'Innova',
-      seatsLeft: 3,
-      pickUp: 'Office',
-      destination: 'Lavel',
-    },
-    {
-      id: 5,
-      offerId: 'jkl',
-      name: 'Tejas',
-      car: 'Fortuner',
-      seatsLeft: 4,
-      pickUp: 'Sector 16',
-      destination: 'Station',
-    },
-    {
-      id: 6,
-      offerId: 'uvw',
-      name: 'Ronal',
-      car: 'Marazzo',
-      seatsLeft: 1,
-      pickUp: 'Bus Stand',
-      destination: 'Office',
-    },
-  ];
+  rideInfo: any[] = [];
+
+  ngOnInit(): void {
+    this.restService.getRides().subscribe(
+      (rideData) => {
+        this.rideInfo = rideData;
+      },
+      (error) => {
+        console.error('Error fetchin ride data: ', error);
+      }
+    )
+  }
 
   toggleRideButton() {
     if (this.isRideInfoTableVisible) {

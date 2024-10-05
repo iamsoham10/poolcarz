@@ -1,19 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
+  private userUrl = 'assets/users.json';
+  private rideUrl = 'assets/rides.json';
+
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>('../../data/users.json').pipe(
-      catchError((error) => {
-        console.error('Error fetching users:', error);
-        return of([]);
+  //fetch all users
+  getUsers(): Observable<any> {
+    return this.http.get(this.userUrl);
+  }
+
+  //validate the user
+  validateUser(username: string, password: string): Observable<any> {
+    return this.getUsers().pipe(
+      map((users: any[]) => {
+        return users.find(user => user.username === username && user.password === password);
       })
     );
+  }
+
+  //fetch all rides
+  getRides(): Observable<any> {
+    return this.http.get(this.rideUrl);
   }
 }

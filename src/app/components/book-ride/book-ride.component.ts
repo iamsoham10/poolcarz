@@ -39,7 +39,7 @@ export class BookRideComponent implements OnInit {
         this.rideInfo = rideData;
       },
       (error) => {
-        console.error('Error fetchin ride data: ', error);
+        console.error('Error fetching ride data: ', error);
       }
     )
   }

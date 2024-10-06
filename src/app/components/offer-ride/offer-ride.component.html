@@ -3,30 +3,41 @@
       Car Ride Registration Form
     </div>
     <div class="card-body">
-        <form>
+        <form (ngSubmit)="saveRide()">
+          <div class="mb-3">
+            <label for="id" class="form-label fw-bold">RideId</label>
+            <input type="number" class="form-control" id="id" name="id" [(ngModel)]="ride.id">
+          </div>
+          <div class="mb-3">
+            <label for="offerId" class="form-label fw-bold">OfferId</label>
+            <input type="text" class="form-control" id="offerId" name="offerId" [(ngModel)]="ride.offerId">
+          </div>
             <div class="mb-3">
-              <label for="email" class="form-label fw-bold">Name</label>
-              <input type="text" class="form-control" id="email">
+              <label for="name" class="form-label fw-bold">Name</label>
+              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="ride.name">
             </div>
             <div class="mb-3">
               <label for="startLocation" class="form-label fw-bold">Start Location</label>
-              <input type="text" class="form-control" id="startLocation">
+              <input type="text" class="form-control" id="startLocation" name="startLocation" [(ngModel)]="ride.pickUp">
             </div>
             <div class="mb-3">
               <label for="destination" class="form-label fw-bold">Destination</label>
-              <input type="text" class="form-control" id="destination">
+              <input type="text" class="form-control" id="destination" name="destination" [(ngModel)]="ride.destination">
             </div>
             <div class="mb-3">
               <label for="car" class="form-label fw-bold">Car</label>
-              <input type="text" class="form-control" id="car">
+              <input type="text" class="form-control" id="car" name="car" [(ngModel)]="ride.car">
             </div>
             <div class="mb-3">
               <label for="seats" class="form-label fw-bold">Seats Available</label>
-              <input type="number" class="form-control" id="seats" name="seats" [(ngModel)]="seatsAvailable">
+              <input type="number" class="form-control" id="seats" name="seats" name="seats" [(ngModel)]="ride.seatsLeft">
               <span *ngIf="invalidSeatsNumber" class="text-danger">Seats should be greater than 0 and less than 8</span>
             </div>
-            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
             <button type="Go Back" class="btn btn-primary ms-3" (click)="goBack()">Go Back</button>
+            <div class="text-success text-center fw-bold">
+            <span *ngIf="isAdded">Added Successfully</span>
+          </div>
           </form>
     </div>
   </div>

@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class RestService {
   private userUrl = 'assets/users.json';
-  private rideUrl = 'assets/rides.json';
+  private rideUrl = "http://localhost:3000/api/rideinfo";
 
   constructor(private http: HttpClient) { }
 

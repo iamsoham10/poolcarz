@@ -16,7 +16,6 @@ export class OfferRideComponent {
 
   ride = {
     "id": null,
-    "offerId": "",
     "name": "",
     "car": "",
     "seatsLeft": null,
@@ -26,15 +25,6 @@ export class OfferRideComponent {
   seatsAvailable: number = 0;
   invalidSeatsNumber: boolean = false;
   isAdded: boolean = false;
-  // onSubmit() {
-  //   if (this.seatsAvailable <= 0 || this.seatsAvailable > 8) {
-  //     this.invalidSeatsNumber = true;
-  //   }
-  //   else {
-  //     this.invalidSeatsNumber = false;
-  //     console.log("Form Submitted");
-  //   }
-  // }
 
   saveRide(): void {
     this.seatsAvailable = this.ride.seatsLeft ?? 0;

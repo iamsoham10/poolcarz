@@ -22,19 +22,21 @@ export class RideDetailsComponent {
   bookButtonStyle = {};
 
   bookRideButton() {
-    if (!this.showBookingMsg) {
-      this.isVisible = false;
-      console.log(this.rideSelected);
+    if (this.bookRide) {
       this.rideSelected.seatsLeft = this.rideSelected.seatsLeft - 1;
+      this.isVisible = true;
+      this.hideTable.emit(true);
       this.rideService.updateRide(this.rideSelected).subscribe(
         response => {
-          console.log('Ride updated successfully: ', response);
+          console.log('Ride updated successfully');
+          this.showBookingMsg = true;
+          this.bookRide = false;
+          this.changeBookButtonStyle();
         },
         error => {
           console.error('Error updating ride: ', error);
         }
       )
-      this.rideSelected = null;
     }
     else {
       this.bookRide = !this.bookRide;
@@ -42,6 +44,8 @@ export class RideDetailsComponent {
       this.changeBookButtonStyle();
       this.hideTable.emit(true);
       this.rideSelected.seatsLeft = this.rideSelected.seatsLeft + 1;
+      this.rideSelected = null;
+      this.isVisible = false;
     }
   }
   changeBookButtonStyle() {

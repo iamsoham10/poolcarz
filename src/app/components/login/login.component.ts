@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RestService } from '../../services/rest.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -19,10 +20,10 @@ export class LoginComponent {
   finalResponse: boolean = false;
   rides!: any[];
 
-  constructor(private router: Router, private restService: RestService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   login() {
-    this.restService.validateUser(this.username, this.password).subscribe(
+    this.userService.validateUser(this.username, this.password).subscribe(
       (user) => {
         if (user) {
           this.router.navigate(['/book-ride']);
@@ -35,5 +36,9 @@ export class LoginComponent {
         this.errorMessage = 'An error occured. Please try again.';
       }
     )
+  }
+
+  goToSignUp() {
+    this.router.navigate(['/signup']);
   }
 }

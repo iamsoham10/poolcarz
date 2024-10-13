@@ -14,3 +14,6 @@ body {
 .text-center{
   margin-top: 5px;
 }
+.sign-up-link{
+  cursor: pointer;
+}

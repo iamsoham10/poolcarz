@@ -12,7 +12,7 @@
   <body>
     <div class="centered-container">
       <div class="card w-25 mx-auto">
-        <div class="card-header bg-primary text-white">Login</div>
+        <div class="card-header bg-primary text-white fw-bold">Login</div>
         <div class="card-body">
           <!-- Form -->
           <form (ngSubmit)="login()">
@@ -42,7 +42,8 @@
             <div class="text-center">
               <button class="btn btn-primary">Login</button>
           </div>
-          </form>
+          <p class="text-center">Don't have an account? <a (click)="goToSignUp()" class="link-offset-2 sign-up-link link-underline link-underline-opacity-0">Sign Up</a></p>
+        </form>
         </div>
       </div>
     </div>

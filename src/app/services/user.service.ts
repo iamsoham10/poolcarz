@@ -6,8 +6,8 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = "http://localhost:3000/api/users";
-  private saveUserUrl = "http://localhost:3000/api/user";
+  private userUrl = "https://poolcarz-backend.onrender.com/api/users";
+  private saveUserUrl = "https://poolcarz-backend.onrender.com/api/user";
 
   constructor(private http: HttpClient) { }
 

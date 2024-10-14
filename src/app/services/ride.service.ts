@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RideService {
-  private apiUrl = "http://localhost:3000/api/rides";
+  private apiUrl = "https://poolcarz-backend.onrender.com/api/rides";
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class RideService {
   }
 
   updateRide(ride: any): Observable<any> {
-    const url = `http://localhost:3000/api/ride/${ride.id}`;
+    const url = `https://poolcarz-backend.onrender.com/api/ride/${ride.id}`;
     return this.http.put(url, ride);
   }
 }

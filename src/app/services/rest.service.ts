@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RestService {
-  private rideUrl = "http://localhost:3000/api/rideinfo";
+  private rideUrl = "https://poolcarz-backend.onrender.com/api/rideinfo";
 
   constructor(private http: HttpClient) { }
 
